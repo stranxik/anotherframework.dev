@@ -1,0 +1,67 @@
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  line-height: var(--lh-normal);
+}
+
+.screen {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity var(--duration-slow) var(--ease-out),
+              transform var(--duration-slow) var(--ease-out),
+              visibility var(--duration-slow);
+  transform: translateY(20px);
+  will-change: opacity, transform;
+}
+
+.screen.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.screen.exiting {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+.container {
+  width: 100%;
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--space-sm) var(--space-xl);
+  text-align: center;
+  font-size: var(--fs-caption);
+  color: var(--text-secondary);
+  opacity: 0.6;
+  z-index: 10;
+}
+
+.footer a {
+  color: var(--accent);
+  transition: opacity var(--duration-fast) var(--ease-in-out);
+}
+
+.footer a:hover {
+  opacity: 0.7;
+}

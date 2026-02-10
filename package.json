@@ -1,0 +1,10 @@
+{
+  "name": "anotherframework.dev",
+  "version": "1.0.0",
+  "description": "Do You Really Need That Framework? — A 2-minute architectural self-assessment.",
+  "private": true,
+  "scripts": {
+    "dev": "python3 -m http.server 3000",
+    "start": "npx serve ."
+  }
+}

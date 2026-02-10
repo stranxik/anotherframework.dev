@@ -1,0 +1,73 @@
+/* ===== Entrance Animations ===== */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes scoreCount {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+
+/* ===== Hero Stagger ===== */
+
+.hero-stagger > *:nth-child(1) { animation: fadeInUp 600ms var(--ease-out) 100ms both; }
+.hero-stagger > *:nth-child(2) { animation: fadeInUp 600ms var(--ease-out) 200ms both; }
+.hero-stagger > *:nth-child(3) { animation: fadeInUp 600ms var(--ease-out) 300ms both; }
+.hero-stagger > *:nth-child(4) { animation: fadeInUp 600ms var(--ease-out) 450ms both; }
+
+/* ===== Result Entrance ===== */
+
+.result-enter > *:nth-child(1) { animation: scoreCount 500ms var(--ease-out) 100ms both; }
+.result-enter > *:nth-child(2) { animation: fadeInUp 500ms var(--ease-out) 250ms both; }
+.result-enter > *:nth-child(3) { animation: fadeInUp 500ms var(--ease-out) 350ms both; }
+.result-enter > *:nth-child(4) { animation: fadeInUp 500ms var(--ease-out) 450ms both; }
+.result-enter > *:nth-child(5) { animation: fadeInUp 500ms var(--ease-out) 550ms both; }
+.result-enter > *:nth-child(6) { animation: fadeInUp 500ms var(--ease-out) 650ms both; }
+
+/* ===== Option Stagger ===== */
+
+.options-stagger > .option:nth-child(1) { animation: fadeInUp 300ms var(--ease-out) 50ms both; }
+.options-stagger > .option:nth-child(2) { animation: fadeInUp 300ms var(--ease-out) 100ms both; }
+.options-stagger > .option:nth-child(3) { animation: fadeInUp 300ms var(--ease-out) 150ms both; }
+.options-stagger > .option:nth-child(4) { animation: fadeInUp 300ms var(--ease-out) 200ms both; }
+.options-stagger > .option:nth-child(5) { animation: fadeInUp 300ms var(--ease-out) 250ms both; }
+
+/* ===== Reduce motion ===== */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

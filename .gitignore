@@ -1,0 +1,7 @@
+.DS_Store
+.agent/
+.claude/
+node_modules/
+*.template.md
+FIRST-PROMPT.md
+skills/
