@@ -8,7 +8,7 @@
  * @param {Object} profile
  */
 function copyToClipboard(score, profile) {
-  const text = `I scored ${score}/30 on "Do You Really Need That Framework?" — I'm a "${profile.title}" 🏗️\n\nhttps://anotherframework.dev`;
+  const text = `I scored ${score}/30 on "Do You Really Need That Framework?" — I'm a "${profile.title}" />\n\nhttps://anotherframework.dev`;
 
   navigator.clipboard.writeText(text).then(() => {
     showToast('Copied to clipboard!');
@@ -24,7 +24,7 @@ function copyToClipboard(score, profile) {
  */
 function shareOnTwitter(score, profile) {
   const text = encodeURIComponent(
-    `I scored ${score}/30 on "Do You Really Need That Framework?" — I'm a "${profile.title}" 🏗️`
+    `I scored ${score}/30 on "Do You Really Need That Framework?" — I'm a "${profile.title}" />`
   );
   const url = encodeURIComponent('https://anotherframework.dev');
   window.open(`https://x.com/intent/post?text=${text}&url=${url}`, '_blank');
