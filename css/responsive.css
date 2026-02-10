@@ -29,6 +29,31 @@
     height: 320px;
   }
 
+  #screen-results {
+    justify-content: flex-start;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-top: var(--space-lg);
+    padding-bottom: 3rem;
+  }
+
+  #screen-results .container {
+    text-align: center;
+  }
+
+  .result-profile {
+    font-size: var(--fs-h3);
+  }
+
+  .result-tagline {
+    font-size: var(--fs-small);
+    margin-bottom: var(--space-lg);
+  }
+
+  .result-recs {
+    margin-bottom: var(--space-lg);
+  }
+
   .result-actions {
     flex-direction: column;
     width: 100%;
