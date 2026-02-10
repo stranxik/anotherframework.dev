@@ -41,7 +41,8 @@
   }
 
   .footer {
-    display: none;
+    font-size: 0.7rem;
+    padding: var(--space-xs) var(--space-md);
   }
 }
 
