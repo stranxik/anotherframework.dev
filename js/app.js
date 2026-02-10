@@ -1,6 +1,7 @@
 import { transitionTo } from './transitions.js';
 import { initForm, resetForm } from './form.js';
 import { copyToClipboard, shareOnTwitter } from './share.js';
+import { getRandomTagline } from './profiles.js';
 
 /**
  * Boot the app.
@@ -52,7 +53,7 @@ function renderResults(score, profile) {
   container.innerHTML = `
     <div class="result-score">${score}<span class="result-score__max">/30</span></div>
     <span class="result-badge result-badge--${profile.color}">${profile.title}</span>
-    <p class="result-profile">${profile.tagline}</p>
+    <p class="result-profile">${getRandomTagline(profile)}</p>
     <p class="result-tagline">${profile.diagnostic}</p>
     <div class="result-recs">
       <p class="result-recs__title">Recommendations</p>
