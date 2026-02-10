@@ -6,6 +6,31 @@ let currentQuestionIndex = 0;
 let answers = {};
 let pendingCleanup = null;
 let navigationEpoch = 0;
+let shuffledOrders = {};
+
+/**
+ * Fisher-Yates shuffle (returns new array).
+ */
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+/**
+ * Get or create a stable shuffled order for a question.
+ * Returns an array of original indices in shuffled display order.
+ */
+function getShuffledOrder(questionId, optionCount) {
+  if (!shuffledOrders[questionId]) {
+    const indices = Array.from({ length: optionCount }, (_, i) => i);
+    shuffledOrders[questionId] = shuffle(indices);
+  }
+  return shuffledOrders[questionId];
+}
 
 /**
  * Initialize the form screen.
@@ -23,6 +48,7 @@ function initForm() {
 function renderQuestion(index, direction) {
   const q = QUESTIONS[index];
   const wrapper = document.getElementById('question-area');
+  const order = getShuffledOrder(q.id, q.options.length);
 
   const stepInfo = document.getElementById('step-info');
   stepInfo.innerHTML = `
@@ -42,12 +68,12 @@ function renderQuestion(index, direction) {
   newSlide.innerHTML = `
     <h2 class="question-title">${q.text}</h2>
     <div class="options-list options-stagger">
-      ${q.options.map((opt, i) => `
-        <div class="option${answers[q.id] === i ? ' selected' : ''}" data-index="${i}">
+      ${order.map(originalIndex => `
+        <div class="option${answers[q.id] === originalIndex ? ' selected' : ''}" data-index="${originalIndex}">
           <div class="option__radio">
             <div class="option__radio-dot"></div>
           </div>
-          <span class="option__text">${opt.label}</span>
+          <span class="option__text">${q.options[originalIndex].label}</span>
         </div>
       `).join('')}
     </div>
@@ -100,8 +126,8 @@ function renderQuestion(index, direction) {
 function selectOption(questionId, optionIndex, allOptions) {
   answers[questionId] = optionIndex;
 
-  allOptions.forEach((o, i) => {
-    o.classList.toggle('selected', i === optionIndex);
+  allOptions.forEach((o) => {
+    o.classList.toggle('selected', parseInt(o.dataset.index) === optionIndex);
   });
 
   updateNav();
@@ -199,6 +225,7 @@ function resetForm() {
   answers = {};
   pendingCleanup = null;
   navigationEpoch++;
+  shuffledOrders = {};
   renderQuestion(0, 'none');
   updateProgress();
 }
